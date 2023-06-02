@@ -35,29 +35,28 @@
             </nav>
             <!-- Header-->
             <header class="bg-dark py-5">
-                <div class="container">
-                    <div class="row gx-5 align-items-center justify-content-center">
-                        <div class="col-lg-8 col-xl-7 col-xxl-6">
-                            <div class="my-5 text-center text-xl-start">
-                                <h1 class="display-5 fw-bolder text-white mb-2">Zip Tool</h1>
-                                <p class="lead fw-normal text-white-50 mb-4">Draw Polygon on map to retrieve zip codes from selected area</p>
-                                
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col" style="max-width:20%;">
+                            <div class="my-5 text-center">
+                                <h1 class="display-5 fw-bolder text-white mb-2 text-center">Zip Tool</h1>
+                                <p class="lead fw-normal text-white-50 mb-4 text-center">Draw Polygon on map to retrieve zip codes from selected area</p>
+                                <!--Controls-->
+                                <button type="button" class="btn btn-primary" id="drawPolyBtn">Draw Polygon<i class="fa-solid fa-square-check"></i></button>
+                                <button type="button" class="btn btn-danger" id="clearButton">clear <i class="fa-solid fa-square-check"></i></button>   
                             </div>
-                        </div>
+                    </div>
+                    <div class="col">
                         <div class="container-fluid">
                             <!--Map Area-->
   
                             <div id="map" style="min-height: 500px"></div>
 
-                            <div class="container-fluid p-2">
-                                <!--Controls-->
-                                <button type="button" class="btn btn-primary" id="drawPolyBtn">Draw Polygon<i class="fa-solid fa-square-check"></i></button>
-                                <button type="button" class="btn btn-warning" id="clearButton">clear <i class="fa-solid fa-square-check"></i></button>
-                            </div>
-
                         </div>
                     </div>
                 </div>
+            </div>
+                
             </header>
             <section class="py-5" id="features">
                 <!--Output Here-->
