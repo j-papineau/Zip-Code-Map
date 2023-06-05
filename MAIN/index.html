@@ -15,6 +15,7 @@
         <!--Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="KML/L.KML.js"></script>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -47,17 +48,23 @@
                                 
                                 <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">Options:</h2>
                                 <label for="radiusCheck" class="text-white text-bold">Circle Mode</label>
-                                <input type="checkbox" id="radiusCheck">
+                                <input type="checkbox" id="radiusCheck" checked>
                                 <label for="radiusSize" class="text-white text-bold">Radius in km (joel didnt want to code for mile conversion :3 )</label>
                                 <input type="number" id="radiusSize" value="20">
                                 <button type="button" class="btn btn-danger" id="clearCircle" style="margin-top: 10px;">clear circle<i class="fa-solid fa-square-check"></i></button> 
+                                <button type="button" class="btn btn-primary" id="getCircleZip" style="margin-top: 10px;">Get Zips Inside Radius<i class="fa-solid fa-square-check"></i></button> 
+                                <h3 class="text-white text-center">--------------</h3>
+                                <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">More Options:</h2>
+                                <label for="adrMap" class="text-white text-bold">ADR Regions</label>
+                                <input type="checkbox" id="adrMapCheck">
+
                             </div>
                     </div>
                     <div class="col">
                         <div class="container-fluid">
                             <!--Map Area-->
   
-                            <div id="map" style="min-height: 500px; min-width: 500px;"></div>
+                            <div id="map" style="min-height: 900px; min-width: 500px;"></div>
 
                         </div>
                     </div>
@@ -80,7 +87,7 @@
                            
                         </div>
                         <div class="col p-2 m-2 dropshadow-basic bigcol">
-                            <h3 class="text-center text-bold">Zips:</h3>
+                            <h3 class="text-center text-bold">*Still in progress* Zips:</h3>
                             <hr>
                             <div class="d-flex p-2 justify-content-center">
                                 <textarea id="zipOutput" cols="80" rows="10"></textarea>
