@@ -43,13 +43,14 @@ $(function () {
   let polyLine;
   let polygon;
   var count = 1;
-  var map = L.map("map").setView([35.31, -84.32], 4);
+  var map = L.map("map").setView([40.31, -84.32], 5);
   var circleCount = 0;
   let circles = [];
   var track;
 
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 17,
+    minZoom: 5,
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
@@ -206,10 +207,10 @@ $(function () {
     
    console.log(circles.length);
    console.log(circles[0]);
-   let output = "Radii: ";
+   let output = "Circles: ";
 
    for(i = 0; i < circles.length; i++){
-        output = output + " " + circles[i]._latlng;
+        output = output + " Lat:" + circles[i]._latlng.lat + " Long: " + circles[i]._latlng.lng + " Radius: " + circles[i]._mRadius + ",";
    }
 
    $("#coordOutput").val(output);
@@ -217,6 +218,34 @@ $(function () {
   });
 
 
+//export csv
 
+$("#exportCSV").click(function(){
+
+  let outputCSV = "Lat,Long,Radius(km)\n";
+
+  for(i = 0; i < circles.length; i++){
+    outputCSV = outputCSV + circles[i]._latlng.lat + "," + circles[i]._latlng.lng + "," + circles[i]._mRadius/1000 + "\n";
+  }
+
+
+
+
+
+  console.log(outputCSV);
+  //Shahjahan Jewel Stack Overflow
+  var downloadLink = document.createElement("a");
+  var blob = new Blob(["\ufeff", outputCSV]);
+  var url = URL.createObjectURL(blob);
+  downloadLink.href = url;
+  downloadLink.download = "radiusData.csv";
+  
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+
+
+
+});
 
 }); //end ready

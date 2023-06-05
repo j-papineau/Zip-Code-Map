@@ -14,6 +14,9 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!--Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <!--Fa-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script src="KML/L.KML.js"></script>
     </head>
@@ -43,19 +46,24 @@
                                 <h1 class="display-5 fw-bolder text-white mb-2 text-center">Zip Tool</h1>
                                 <p class="lead fw-normal text-white-50 mb-4 text-center">Draw Polygon on map to retrieve zip codes from selected area</p>
                                 <!--Controls-->
-                                <button type="button" class="btn btn-primary" id="drawPolyBtn">Draw Polygon<i class="fa-solid fa-square-check"></i></button>
-                                <button type="button" class="btn btn-danger" id="clearButton">clear<i class="fa-solid fa-square-check"></i></button> 
+                                <button type="button" class="btn btn-primary" id="drawPolyBtn">Draw Polygon</button>
+                                <button type="button" class="btn btn-danger" id="clearButton">clear</button> 
                                 
                                 <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">Options:</h2>
-                                <label for="radiusCheck" class="text-white text-bold">Circle Mode</label>
-                                <input type="checkbox" id="radiusCheck" checked>
-                                <label for="radiusSize" class="text-white text-bold">Radius in km (joel didnt want to code for mile conversion :3 )</label>
+                                
+                                <div>
+                                    <label for="radiusCheck" class="text-white text-bold">Circle Mode</label>
+                                    <input type="checkbox" id="radiusCheck" checked>
+                                </div>
+                                
+                                <label for="radiusSize" class="text-white text-bold" style="padding-top:10px">Radius in km</label>
                                 <input type="number" id="radiusSize" value="20">
-                                <button type="button" class="btn btn-danger" id="clearCircle" style="margin-top: 10px;">clear circle<i class="fa-solid fa-square-check"></i></button> 
-                                <button type="button" class="btn btn-primary" id="getCircleZip" style="margin-top: 10px;">Get Zips Inside Radius<i class="fa-solid fa-square-check"></i></button> 
+                                <button type="button" class="btn btn-primary" id="getCircleZip" style="margin-top: 10px;">Get Zips Inside Radius</button> 
+                                <button type="button" class="btn btn-danger" id="clearCircle" style="margin-top: 10px;">clear circles</button> 
+                                
                                 <h3 class="text-white text-center">--------------</h3>
                                 <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">More Options:</h2>
-                                <label for="adrMap" class="text-white text-bold">ADR Regions</label>
+                                <label for="adrMapCheck" class="text-white text-bold">ADR Regions Overlay</label>
                                 <input type="checkbox" id="adrMapCheck">
 
                             </div>
@@ -80,6 +88,7 @@
                     <div class="row">
                         <div class="col p-2 m-2 dropshadow-basic bigcol justify-content-center">
                             <h3 class="text-center text-bold">Selected Region:</h3>
+                            <button type="button" class="btn btn-primary" id="exportCSV" style="margin-top: 10px;">Export to CSV <i class="fa-solid fa-file"></i></button> 
                             <hr>
                             <div class="d-flex p-2 justify-content-center">
                                 <textarea id="coordOutput" cols="80" rows="10"></textarea>
