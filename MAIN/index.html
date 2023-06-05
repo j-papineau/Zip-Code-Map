@@ -43,7 +43,14 @@
                                 <p class="lead fw-normal text-white-50 mb-4 text-center">Draw Polygon on map to retrieve zip codes from selected area</p>
                                 <!--Controls-->
                                 <button type="button" class="btn btn-primary" id="drawPolyBtn">Draw Polygon<i class="fa-solid fa-square-check"></i></button>
-                                <button type="button" class="btn btn-danger" id="clearButton">clear<i class="fa-solid fa-square-check"></i></button>   
+                                <button type="button" class="btn btn-danger" id="clearButton">clear<i class="fa-solid fa-square-check"></i></button> 
+                                
+                                <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">Options:</h2>
+                                <label for="radiusCheck" class="text-white text-bold">Circle Mode</label>
+                                <input type="checkbox" id="radiusCheck">
+                                <label for="radiusSize" class="text-white text-bold">Radius in km (joel didnt want to code for mile conversion :3 )</label>
+                                <input type="number" id="radiusSize" value="20">
+                                <button type="button" class="btn btn-danger" id="clearCircle" style="margin-top: 10px;">clear circle<i class="fa-solid fa-square-check"></i></button> 
                             </div>
                     </div>
                     <div class="col">
