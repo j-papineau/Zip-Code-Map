@@ -1,44 +1,6 @@
-//classes
-
-// const locationCircles = []
-
-// class LocationCircle{
-
-//    constructor(id, latlng){
-
-//         this.id = id;
-//         this.circle = L.circle(latlng,{
-
-//             color:'blue',
-//             fillColor: 'blue',
-//             fillOpacity: .5,
-//             radius: radiusKM
-
-//         })
-
-//         this.marker = L.marker(latlng);
-//    }
-// // add to map method: Shawn
-//    addToMap(map) {
-//        //this.circle.addTo(map);
-//       // this.marker.addTo(map);
-//    }
-
-//    //getters
-
-//    getMarker(){ return this.marker; }
-
-//    getCircle(){ this.circle }
-
-//    getId(){ this.id }
-
-// }
 
 //DOM READY
 $(function () {
-  //load kml
-
-  
 
   let polyLine;
   let polygon;
@@ -106,13 +68,6 @@ $(function () {
           radiusKM +
           "km"
       );
-
-      // //Shawn Code
-      // const newCircle = new LocationCircle(circleCount, e.latlng);
-
-      // newCircle.getCircle.addTo(map);
-
-      // locationCircles.push(newCircle);
 
       circles[circleCount] = L.circle(e.latlng, {
         color: "blue",
