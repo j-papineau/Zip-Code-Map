@@ -210,7 +210,11 @@ $(function () {
    let output = "Circles: ";
 
    for(i = 0; i < circles.length; i++){
-        output = output + " Lat:" + circles[i]._latlng.lat + " Long: " + circles[i]._latlng.lng + " Radius: " + circles[i]._mRadius + ",";
+        let lat = Math.round(circles[i]._latlng.lat * 100)/100;
+        let long = Math.round(circles[i]._latlng.lng * 100)/100;
+
+
+        output = output + " Lat:" + lat + " Long: " + long + " Radius: " + circles[i]._mRadius + ",";
    }
 
    $("#coordOutput").val(output);
@@ -225,7 +229,10 @@ $("#exportCSV").click(function(){
   let outputCSV = "Lat,Long,Radius(km)\n";
 
   for(i = 0; i < circles.length; i++){
-    outputCSV = outputCSV + circles[i]._latlng.lat + "," + circles[i]._latlng.lng + "," + circles[i]._mRadius/1000 + "\n";
+    let lat = Math.round(circles[i]._latlng.lat * 100)/100;
+    let long = Math.round(circles[i]._latlng.lng * 100)/100;
+
+    outputCSV = outputCSV + lat + "," + long + "," + circles[i]._mRadius/1000 + "\n";
   }
 
 
