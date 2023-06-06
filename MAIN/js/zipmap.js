@@ -9,6 +9,7 @@ $(function () {
   var circleCount = 0;
   let circles = [];
   var track;
+  let squares = [];
 
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 17,
@@ -43,12 +44,6 @@ $(function () {
   })
   
   
-  
-  
-  
-  
-  
-  
   //map click
   function onMapClick(e) {
     //alert("You clicked the map at " + e.latlng);
@@ -80,7 +75,32 @@ $(function () {
 
       console.log(circles.length);
       // circle.redraw();
-    } else {
+    } else if($("#squareCheck").is(":checked")){
+
+
+      console.log("Creating square");
+
+      //e.latlng;
+
+      //squares[];
+      let lat = e.latlng.lat;
+      let lng = e.latlng.lng;
+      let x = $("#squareSize").val();
+
+      //let bounds = [[lat + x, lng - x], [lat+x, lng+x], [lat-x,lng-x], [lat-x,lng+x]];
+
+      let bounds = [[lat-x,lng-x],[lat+x,lng-x],[lat+x,lng+x],[lat-x,lng+x]];
+
+      squares[0] = L.polygon(bounds, {color: 'red'}).addTo(map);
+      
+      //L.rectangle(bounds, {color: "#ff7800", weight: 1}).addTo(map);
+      
+
+
+
+
+
+    }else{
 
         //POLYGON METHODS
       console.log(e.latlng);
@@ -209,5 +229,103 @@ $("#exportCSV").click(function(){
 
 
 });
+
+
+//test JSON
+
+$("#parseJSON").click(function (){
+  let count = 0;
+  console.log("parsing JSON");
+  let startTime = Math.floor(Date.now() / 1000);
+
+  $.getJSON("assets/zips.json", function(data){
+
+    $.each(data, function(key, val){
+      count++;
+    })
+
+  
+
+  console.log(count + " items parsed in:");
+
+  let endTime = Math.floor(Date.now() / 1000);
+  let elapsed = endTime - startTime;
+
+  console.log(elapsed + " seconds");
+
+
+
+  });
+
+
+
+});
+
+
+//get square zip
+
+$("#getSquareZip").click(function(){
+
+
+  let coords = squares[0].getLatLngs();
+  console.log(coords);
+
+  console.log("~~~~~~~~");
+
+
+  singleCoord = coords[0][0].lat
+
+  
+  
+  // coordsJSON = JSON.stringify(coords);
+  // coordsJSON = JSON.parse(coordsJSON);
+  // console.log(coordsJSON);
+
+
+  latMin = coords[0][0].lat;
+  latMax = coords[0][1].lat;
+  lngMin = coords[0][0].lng;
+  lngMax = coords[0][3].lng;
+  let currentLat;
+  let currentLng;
+  let zipsOutput;
+  
+  let markers = [];
+
+  console.log(latMin + " " + latMax);
+  console.log(lngMin + " " + lngMax);
+
+  $.getJSON("assets/zips.json", function(data){
+
+    $.each(data, function(key, val){
+      
+      
+      currentLat = val.Lat;
+      currentLng = val.Long;
+      
+        if(currentLat > latMin && currentLat < latMax && currentLng > lngMin && currentLng < lngMax){
+
+          count++
+
+          console.log("Matching Zip: " + val.Zipcode);
+
+          zipsOutput = zipsOutput + ", " + `${val.Zipcode}`; 
+
+          markers[count] = L.marker([val.Lat, val.Long], {
+            title: val.Zipcode,
+          }).addTo(map);
+
+         markers[count].bindPopup(`${val.Zipcode}`).openPopup();
+          
+        }
+    })
+
+     $("#zipOutput").val(zipsOutput);
+  })
+
+});
+
+
+
 
 }); //end ready

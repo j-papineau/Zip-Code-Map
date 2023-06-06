@@ -53,14 +53,26 @@
                                 
                                 <div>
                                     <label for="radiusCheck" class="text-white text-bold">Circle Mode</label>
-                                    <input type="checkbox" id="radiusCheck" checked>
+                                    <input type="checkbox" id="radiusCheck">
                                 </div>
+                                
                                 
                                 <label for="radiusSize" class="text-white text-bold" style="padding-top:10px">Radius in km</label>
                                 <input type="number" id="radiusSize" value="20">
                                 <button type="button" class="btn btn-primary" id="getCircleZip" style="margin-top: 10px;">Get Zips Inside Radius</button> 
                                 <button type="button" class="btn btn-danger" id="clearCircle" style="margin-top: 10px;">clear circles</button> 
                                 
+                                <h3 class="text-white text-center">--------------</h3>
+
+                                <div>
+                                    <label for="squareCheck" class="text-white text-bold">Square Mode</label>
+                                    <input type="checkbox" id="squareCheck">
+                                    <label for="squareSize" class="text-white text-bold" style="padding-top:10px">Square Size:</label>
+                                    <input type="number" id="squareSize" value="2">
+                                    <button type="button" class="btn btn-primary" id="getSquareZip" style="margin-top: 10px;">Get Zips Inside Square</button> 
+                                    <button type="button" class="btn btn-danger" id="clearSquare" style="margin-top: 10px;">Clear Squares</button> 
+                                </div>
+
                                 <h3 class="text-white text-center">--------------</h3>
                                 <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">More Options:</h2>
                                 <label for="adrMapCheck" class="text-white text-bold">ADR Regions Overlay</label>
@@ -89,6 +101,8 @@
                         <div class="col p-2 m-2 dropshadow-basic bigcol justify-content-center">
                             <h3 class="text-center text-bold">Selected Region:</h3>
                             <button type="button" class="btn btn-primary" id="exportCSV" style="margin-top: 10px;">Export to CSV <i class="fa-solid fa-file"></i></button> 
+                            <button type="button" class="btn btn-primary" id="parseJSON" style="margin-top: 10px;">TEST JSON <i class="fa-solid fa-file"></i></button> 
+
                             <hr>
                             <div class="d-flex p-2 justify-content-center">
                                 <textarea id="coordOutput" cols="80" rows="10"></textarea>
@@ -96,7 +110,7 @@
                            
                         </div>
                         <div class="col p-2 m-2 dropshadow-basic bigcol">
-                            <h3 class="text-center text-bold">*Still in progress* Zips:</h3>
+                            <h3 class="text-center text-bold">Zips:</h3>
                             <hr>
                             <div class="d-flex p-2 justify-content-center">
                                 <textarea id="zipOutput" cols="80" rows="10"></textarea>
