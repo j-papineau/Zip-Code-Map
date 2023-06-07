@@ -44,6 +44,7 @@ $(function () {
 
   })
   
+ 
   
   //map click
   function onMapClick(e) {
@@ -269,29 +270,29 @@ $("#parseJSON").click(function (){
 
 //clear squares
 
-$("#clearSquare").click(function(){
+// $("#clearSquare").click(function(){
 
-  console.log(squareCount);
+//   console.log(squareCount);
 
-  console.log(squares);
+//   console.log(squares);
 
 
-  for(i = 0; i < squares.length;i++){
-    squares[i].remove();
-  }
+//   for(i = 0; i < squares.length;i++){
+//     squares[i].remove();
+//   }
 
-  i = squares.length;
+//   i = squares.length;
 
-  while(i !== 0){
-    squares.pop();
-    i--;
+//   while(i !== 0){
+//     squares.pop();
+//     i--;
     
-  }
+//   }
 
-  console.log(squares);
-  squareCount = 0;
+//   console.log(squares);
+//   squareCount = 0;
 
-});
+// });
 
 
 

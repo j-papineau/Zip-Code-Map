@@ -19,6 +19,9 @@
 
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
         <script src="KML/L.KML.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.path.drag@0.0.6/src/Path.Drag.min.js"></script>
+
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -30,7 +33,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <a href="https://github.com/j-papineau" class="text-primary">My GitHub</a>
+                            <a href="https://github.com/j-papineau" class="text-primary fw-bolder text-white">My GitHub</a>
                         </ul>
                             </li>
                         </ul>
@@ -46,6 +49,8 @@
                                 <h1 class="display-5 fw-bolder text-white mb-2 text-center">Zip Tool</h1>
                                 <p class="lead fw-normal text-white-50 mb-4 text-center">Draw Polygon on map to retrieve zip codes from selected area</p>
                                 <!--Controls-->
+
+                                <!-- Stuff For Later Implementation 
                                 <button type="button" class="btn btn-primary" id="drawPolyBtn">Draw Polygon</button>
                                 <button type="button" class="btn btn-danger" id="clearButton">clear</button> 
                                 
@@ -63,20 +68,32 @@
                                 <button type="button" class="btn btn-danger" id="clearCircle" style="margin-top: 10px;">clear circles</button> 
                                 
                                 <h3 class="text-white text-center">--------------</h3>
-
+                                -->
                                 <div>
+                                    <h1 class="display-4 fw-bolder text-white mb-2 text-center">Squares: </h1>
+                                    <p class="lead fw-normal text-white-50 mb-4 text-center">Click and drag square to move</p>
+
                                     <label for="squareCheck" class="text-white text-bold">Square Mode</label>
-                                    <input type="checkbox" id="squareCheck">
-                                    <label for="squareSize" class="text-white text-bold" style="padding-top:10px">Square Size:</label>
-                                    <input type="number" id="squareSize" value="2">
+                                    <input type="checkbox" id="squareCheck" checked>
+                                    <div>
+                                        <label for="squareSize" class="text-white text-bold" style="padding-top:10px">Square Size (limit due to processing power = 5):</label>
+                                    </div>
+                                    
+                                    <input type="number" id="squareSize" value="1">
                                     <button type="button" class="btn btn-primary" id="getSquareZip" style="margin-top: 10px;">Get Zips Inside Square</button> 
-                                    <button type="button" class="btn btn-danger" id="clearSquare" style="margin-top: 10px;">Clear Squares</button> 
+                                    
                                 </div>
 
                                 <h3 class="text-white text-center">--------------</h3>
                                 <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">More Options:</h2>
                                 <label for="adrMapCheck" class="text-white text-bold">ADR Regions Overlay</label>
                                 <input type="checkbox" id="adrMapCheck">
+                                <label for="adrMapInteractable" class="text-white text-bold">ADR Regions Overlay Interactive (Disabled)</label>
+                                <input type="checkbox" id="adrMapInteractable">
+                                <div>
+                                <button type="button" class="btn btn-danger" id="clearMap" style="margin-top: 10px;">Clear Map</button>
+                                </div>
+                                
 
                             </div>
                     </div>
@@ -111,6 +128,8 @@
                         </div>
                         <div class="col p-2 m-2 dropshadow-basic bigcol">
                             <h3 class="text-center text-bold">Zips:</h3>
+                            <button type="button" class="btn btn-warning" id="clearZips" style="margin-top: 10px;">Clear  <i class="fa-solid fa-file"></i></button> 
+
                             <hr>
                             <div class="d-flex p-2 justify-content-center">
                                 <textarea id="zipOutput" cols="80" rows="10"></textarea>
@@ -139,6 +158,8 @@
         <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <script src="js/zipmap.js"></script>
+        <script src="js/dataMethods.js"></script>
+        <script src="js/shapes.js"></script>
+        <script src="js/zipmap-controller.js"></script>
     </body>
 </html>
