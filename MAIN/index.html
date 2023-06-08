@@ -97,7 +97,7 @@
                                                 <label for="circleSize" class="text-white text-bold" style="padding-top:10px;">Circle Radius (km)</label>
                                             </div>
         
-                                            <input type="number" id="circleSize" value="2" style="max-width: 70px;">
+                                            <input type="number" id="circleSize" value="10" style="max-width: 70px;">
                                             <button type="button" class="btn btn-primary" id="getCircleZip" style="margin-top: 10px;">Get Zips Inside Circles</button> 
                                             <p class="lead fw-normal text-white-50 mb-4 text-center" style="padding-top: 10px;">TIP: mouse over marker to see zip value</p>
                                             </div>
@@ -116,7 +116,8 @@
                                               <!--Circles Accordion Content-->
                                               <div class="container-fluid">
                                               <h3 class="fw-bolder text-white mb-2 text-center">Polygon: </h3>
-                                              <p class="lead fw-normal text-white-50 mb-4 text-center">select checkbox and start clicking on map to add points</p>
+                                              <p class="lead fw-normal text-white-50 mb-4 text-center">select checkbox and start clicking on map to add points <br>
+                                            note: this uses a ray-casting algorithm therefore takes longer to parse</p>
           
                                               <label for="polyCheck" class="text-white text-bold">Polygon Mode</label>
                                               <input type="checkBox"  id="polyCheck">
@@ -135,12 +136,13 @@
                                 <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">More Options:</h2>
                                 <label for="adrMapCheck" class="text-white text-bold">ADR Regions Overlay</label>
                                 <input type="checkbox" id="adrMapCheck">
-                                <label for="adrMapInteractable" class="text-white text-bold">ADR Regions Overlay Interactive (Disabled)</label>
-                                <input type="checkbox" id="adrMapInteractable">
+                               <!-- <label for="adrMapInteractable" class="text-white text-bold">ADR Regions Overlay Interactive (Disabled)</label> 
+                                <input type="checkbox" id="adrMapInteractable"> -->
                                 <div>
                                 <button type="button" class="btn btn-danger" id="clearMap" style="margin-top: 10px;">Clear Map</button>
                                 </div>
                                 <button type="button" class="btn btn-primary" id="loadGeoJSON" style="margin-top: 10px;">Load Current Zones</button>
+                                <p class="text-white" style="padding-top: 10px">- Do Not Use Below (Love, Joel) -</p>
                                 <button type="button" class="btn btn-success" id="updateGeoJSON" style="margin-top: 10px;">Save Changes</button> 
                                 <button type="button" class="btn btn-secondary" id="exportGeoJSON" style="margin-top: 10px;">Export GeoJSON</button> 
 

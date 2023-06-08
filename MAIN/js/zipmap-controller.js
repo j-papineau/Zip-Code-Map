@@ -110,6 +110,10 @@ $(function () {
     output = await getZipsCircle(circles);
   })
 
+  $("#getPolyZip").click(async function(){
+    output = await getZipsPoly(polyLine);
+  })
+
 
   //geoJSON load/save
 

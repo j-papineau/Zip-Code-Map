@@ -3,6 +3,10 @@ let squares = [];
 let squareCount = 0;
 let circles = [];
 let circleCount = 0;
+let polyCount = 0;
+let polyLines = [];
+let polyLine;
+let polygons = [];
 
 //functions to create shapes on map
 
@@ -38,6 +42,12 @@ function clearMap() {
   clearMarkers();
   clearOutput();
   clearCircles();
+  clearPolyLine();
+}
+
+function clearPolyLine(){
+    polyLine.setLatLngs([]);
+    polyCount = 0;
 }
 
 function clearSquares() {
@@ -61,7 +71,7 @@ function createCircle(e){
 
     radius = $("#circleSize").val() * 1000; //convert km to m for method
 
-    console.log("Creating Square of size: " + radius + " at " + e.latlng);
+    console.log("Creating Circle of size: " + radius + " at " + e.latlng);
 
     circles[circleCount] = L.circle([e.latlng.lat, e.latlng.lng], {radius: radius, draggable: true}).addTo(map);
 
@@ -81,14 +91,27 @@ function clearCircles(){
         i--;
     }
 
+    circleCount = 0;
+
     console.log(circles);
 }
 
 //POLYGON
 
 function addPolyNode(e){
-
     console.log("Adding poly node at: " + e.latlng);
+
+    if(polyCount === 0){
+        polyLine = L.polyline([
+            [e.latlng.lat, e.latlng.lng],
+            [e.latlng.lat, e.latlng.lng]
+        ]).addTo(map);
+        polyCount++;
+    }else{
+        polyLine.addLatLng([e.latlng.lat, e.latlng.lng]);
+        polyCount++;
+    }
+
 }
 
 
