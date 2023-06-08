@@ -193,7 +193,11 @@ async function getZipsPoly(polyLine){
 
         })//end for each in JSON
 
+        printOutput(zipsOutput);
+        return zipsOutput;
+
     })//end getJSON
+
 
 
 }
