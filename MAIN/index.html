@@ -47,42 +47,89 @@
                     <div class="col" style="max-width:20%;">
                             <div class="my-5 text-center">
                                 <h1 class="display-5 fw-bolder text-white mb-2 text-center">Zip Tool</h1>
-                                <p class="lead fw-normal text-white-50 mb-4 text-center">Draw Polygon on map to retrieve zip codes from selected area</p>
-                                <!--Controls-->
-
-                                <!-- Stuff For Later Implementation 
-                                <button type="button" class="btn btn-primary" id="drawPolyBtn">Draw Polygon</button>
-                                <button type="button" class="btn btn-danger" id="clearButton">clear</button> 
                                 
-                                <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">Options:</h2>
-                                
-                                <div>
-                                    <label for="radiusCheck" class="text-white text-bold">Circle Mode</label>
-                                    <input type="checkbox" id="radiusCheck">
-                                </div>
-                                
-                                
-                                <label for="radiusSize" class="text-white text-bold" style="padding-top:10px">Radius in km</label>
-                                <input type="number" id="radiusSize" value="20">
-                                <button type="button" class="btn btn-primary" id="getCircleZip" style="margin-top: 10px;">Get Zips Inside Radius</button> 
-                                <button type="button" class="btn btn-danger" id="clearCircle" style="margin-top: 10px;">clear circles</button> 
-                                
-                                <h3 class="text-white text-center">--------------</h3>
-                                -->
-                                <div>
-                                    <h1 class="display-4 fw-bolder text-white mb-2 text-center">Squares: </h1>
-                                    <p class="lead fw-normal text-white-50 mb-4 text-center">Click and drag square to move</p>
-
-                                    <label for="squareCheck" class="text-white text-bold">Square Mode</label>
-                                    <input type="checkbox" id="squareCheck" checked>
-                                    <div>
-                                        <label for="squareSize" class="text-white text-bold" style="padding-top:10px">Square Size (limit due to processing power = 5):</label>
+                                <!--Flush accordion from BS5 docs-->
+                                <div class="accordion accordion-flush bg-dark" id="accordionFlushExample">
+                                    <div class="accordion-item bg-secondary">
+                                      <h2 class="accordion-header" id="flush-headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                          Squares
+                                        </button>
+                                      </h2>
+                                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <!--Squares Accordion Content-->
+                                            <div class="container-fluid">
+                                                <h3 class="fw-bolder text-white mb-2 text-center">Squares: </h3>
+                                                <p class="lead fw-normal text-white-50 mb-4 text-center">Click and drag square to move</p>
+            
+                                                <label for="squareCheck" class="text-white text-bold">Square Mode</label>
+                                                <input type="checkbox" id="squareCheck" checked>
+                                                <div>
+                                                    <label for="squareSize" class="text-white text-bold" style="padding-top:10px">Square Size (limit due to processing power = 5):</label>
+                                                </div>
+                                                
+                                                <input type="number" id="squareSize" value="1" style="max-width: 70px;">
+                                                <button type="button" class="btn btn-primary" id="getSquareZip" style="margin-top: 10px;">Get Zips Inside Squares</button> 
+                                                <p class="lead fw-normal text-white-50 mb-4 text-center" style="padding-top: 10px;">TIP: mouse over marker to see zip value</p>
+                                                
+                                            </div>
+                                            <!---->
+                                        </div>
+                                      </div>
                                     </div>
-                                    
-                                    <input type="number" id="squareSize" value="1">
-                                    <button type="button" class="btn btn-primary" id="getSquareZip" style="margin-top: 10px;">Get Zips Inside Square</button> 
-                                    
-                                </div>
+                                    <div class="accordion-item bg-secondary">
+                                      <h2 class="accordion-header" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                          Circles
+                                        </button>
+                                      </h2>
+                                      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <!--Circles Accordion Content-->
+                                            <div class="container-fluid">
+                                            <h3 class="fw-bolder text-white mb-2 text-center">Circles: </h3>
+                                            <p class="lead fw-normal text-white-50 mb-4 text-center">Click and drag circle to move</p>
+        
+                                            <label for="circleCheck" class="text-white text-bold">Circle Mode</label>
+                                            <input type="checkBox"  id="circleCheck">
+                                            <div>
+                                                <label for="circleSize" class="text-white text-bold" style="padding-top:10px;">Circle Radius (km)</label>
+                                            </div>
+        
+                                            <input type="number" id="circleSize" value="2" style="max-width: 70px;">
+                                            <button type="button" class="btn btn-primary" id="getCircleZip" style="margin-top: 10px;">Get Zips Inside Circles</button> 
+                                            <p class="lead fw-normal text-white-50 mb-4 text-center" style="padding-top: 10px;">TIP: mouse over marker to see zip value</p>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="accordion-item bg-secondary">
+                                        <h2 class="accordion-header" id="flush-headingThree">
+                                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Custom Polygon
+                                          </button>
+                                        </h2>
+                                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                          <div class="accordion-body">
+                                              <!--Circles Accordion Content-->
+                                              <div class="container-fluid">
+                                              <h3 class="fw-bolder text-white mb-2 text-center">Polygon: </h3>
+                                              <p class="lead fw-normal text-white-50 mb-4 text-center">select checkbox and start clicking on map to add points</p>
+          
+                                              <label for="polyCheck" class="text-white text-bold">Polygon Mode</label>
+                                              <input type="checkBox"  id="polyCheck">
+                                              
+                                              <button type="button" class="btn btn-primary" id="getPolyZip" style="margin-top: 10px;">Get Zips Inside Area</button> 
+                                              <p class="lead fw-normal text-white-50 mb-4 text-center" style="padding-top: 10px;">TIP: mouse over marker to see zip value</p>
+                                              </div>
+                                              <!---->
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+
 
                                 <h3 class="text-white text-center">--------------</h3>
                                 <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">More Options:</h2>
@@ -93,7 +140,10 @@
                                 <div>
                                 <button type="button" class="btn btn-danger" id="clearMap" style="margin-top: 10px;">Clear Map</button>
                                 </div>
-                                
+                                <button type="button" class="btn btn-primary" id="loadGeoJSON" style="margin-top: 10px;">Load Current Zones</button>
+                                <button type="button" class="btn btn-success" id="updateGeoJSON" style="margin-top: 10px;">Save Changes</button> 
+                                <button type="button" class="btn btn-secondary" id="exportGeoJSON" style="margin-top: 10px;">Export GeoJSON</button> 
+
 
                             </div>
                     </div>
@@ -101,7 +151,7 @@
                         <div class="container-fluid">
                             <!--Map Area-->
   
-                            <div id="map" style="min-height: 900px; min-width: 500px;"></div>
+                            <div id="map" style="min-height: 700px; min-width: 300px;"></div>
 
                         </div>
                     </div>
@@ -115,20 +165,22 @@
                 <h3 class="text-center text-secondary">Output:</h3>
                 <div class="container-fluid" style="min-height: 500px;">
                     <div class="row">
+                        <!--
                         <div class="col p-2 m-2 dropshadow-basic bigcol justify-content-center">
                             <h3 class="text-center text-bold">Selected Region:</h3>
                             <button type="button" class="btn btn-primary" id="exportCSV" style="margin-top: 10px;">Export to CSV <i class="fa-solid fa-file"></i></button> 
-                            <button type="button" class="btn btn-primary" id="parseJSON" style="margin-top: 10px;">TEST JSON <i class="fa-solid fa-file"></i></button> 
-
                             <hr>
                             <div class="d-flex p-2 justify-content-center">
                                 <textarea id="coordOutput" cols="80" rows="10"></textarea>
                             </div>
                            
                         </div>
+                        -->
                         <div class="col p-2 m-2 dropshadow-basic bigcol">
                             <h3 class="text-center text-bold">Zips:</h3>
                             <button type="button" class="btn btn-warning" id="clearZips" style="margin-top: 10px;">Clear  <i class="fa-solid fa-file"></i></button> 
+                            <label for="csvCheck">CSV Format</label>
+                            <input type="checkbox" id="csvCheck" checked>
 
                             <hr>
                             <div class="d-flex p-2 justify-content-center">

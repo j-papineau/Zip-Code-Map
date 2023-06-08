@@ -1,9 +1,13 @@
 //big vars
 let squares = [];
 let squareCount = 0;
+let circles = [];
+let circleCount = 0;
 
 //functions to create shapes on map
 
+
+//SQUARES
 function createSquare(e) {
   //TODO square is not being created center of click point
 
@@ -33,6 +37,7 @@ function clearMap() {
   clearSquares();
   clearMarkers();
   clearOutput();
+  clearCircles();
 }
 
 function clearSquares() {
@@ -48,6 +53,50 @@ function clearSquares() {
   squareCount = 0;
 }
 
+
+//CIRCLES
+
+
+function createCircle(e){
+
+    radius = $("#circleSize").val() * 1000; //convert km to m for method
+
+    console.log("Creating Square of size: " + radius + " at " + e.latlng);
+
+    circles[circleCount] = L.circle([e.latlng.lat, e.latlng.lng], {radius: radius, draggable: true}).addTo(map);
+
+    circleCount++;
+
+}
+
+function clearCircles(){
+
+    for(i = 0; i < circles.length; i++){
+        circles[i].remove();
+    }
+    i = circles.length;
+
+    while(i !== 0){
+        circles.pop();
+        i--;
+    }
+
+    console.log(circles);
+}
+
+//POLYGON
+
+function addPolyNode(e){
+
+    console.log("Adding poly node at: " + e.latlng);
+}
+
+
+
+
+
+
+//MARKERS
 function clearMarkers() {
   console.log(markers);
   for (i = 0; i < markers.length; i++) {
@@ -67,4 +116,23 @@ function clearMarkers() {
 
 function clearOutput() {
   $("#zipOutput").val("");
+}
+
+//geoJSON test methods
+
+function loadGeoJSON(){
+
+    console.log("load geoJSON");
+
+
+}
+
+function updateGeoJSON(){
+
+    console.log("updating geoJSON"); 
+
+}
+
+function exportGeoJSON(){
+    console.log("exporting geoJSON");
 }

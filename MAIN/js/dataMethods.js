@@ -1,6 +1,7 @@
 var markerCount = 0;
 var markers = [];
 
+//PRINT -- EXPORT 
 function printOutput(outputString) {
   if ($("#zipOutput").val() === "") {
     $("#zipOutput").val(outputString);
@@ -11,6 +12,11 @@ function printOutput(outputString) {
 
 function exportCSVFromString(output) {}
 
+
+
+
+
+//SQUARES
 async function getZipsSquare(squares) {
   var finalOutput;
 
@@ -24,7 +30,7 @@ async function getZipsSquare(squares) {
   return finalOutput;
 } //end get zips
 
-//returns zips from
+
 async function getZipFromSquare(square, i) {
   console.log("parsing square: " + i);
 
@@ -72,4 +78,29 @@ async function getZipFromSquare(square, i) {
   }); //end JSON get
 
   return zipsOutput;
+}
+
+
+//CIRCLES
+
+async function getZipsCircle(circles){
+
+    for(i = 0; i < circles.length; i++){
+        output = await getZipFromCircle(circles[i], i);
+    }
+
+
+
+}
+
+async function getZipFromCircle(circle, i){
+
+    center = circle.getLatLng();
+    centerLat = center.lat;
+    centerLng = center.lng;
+    radius = circle.getRadius(); //returns in m NOT KM
+    
+    console.log(radius);
+
+
 }
