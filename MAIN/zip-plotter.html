@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>ZIP Code Map - @j-papineau</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!--Leaflet-->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <!--Fa-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+        <script src="KML/L.KML.js"></script>
+        <!--Sheet JS-->
+        <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/leaflet.path.drag@0.0.6/src/Path.Drag.min.js"></script>
+
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html">Zip Selector</a>
+                    <a class="navbar-brand" href="index.html"><em> - Joel Papineau</em> </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <a href="https://github.com/j-papineau" class="text-primary fw-bolder text-white">My GitHub</a>
+                            <a href="index.html" class="text-primary fw-bolder text-white" style="padding-left: 20px;">Zip Selector</a>
+                        </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Header-->
+            <header class="bg-dark py-5">
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col" style="max-width:20%;">
+                            <div class="my-5 text-center">
+                                <h1 class="display-5 fw-bolder text-white mb-2 text-center">Zip Plotter</h1>
+                                <div class="container-fluid">
+                                    <p class="text-secondary">Upload File from Google Ads</p>
+                                    <form class="justify-content-center">
+                                        <input class="form-control" type="file" id="fileImport">
+                                        <button type="button" class="btn btn-success" id="uploadFile" style="margin-top: 10px;">Upload and Plot</button>
+                                    </form>
+                                </div>
+                                <!--Flush accordion from BS5 docs-->
+                                
+
+
+                                <h3 class="text-white text-center">--------------</h3>
+                                <h2 class="text-white text-center mb-2 fw-bolder" style="padding-top:20px;">More Options:</h2>
+                                <label for="adrMapCheck" class="text-white text-bold">ADR Regions Overlay</label>
+                                <input type="checkbox" id="adrMapCheck">
+                               <!-- <label for="adrMapInteractable" class="text-white text-bold">ADR Regions Overlay Interactive (Disabled)</label> 
+                                <input type="checkbox" id="adrMapInteractable"> -->
+
+
+                            </div>
+                    </div>
+                    <div class="col">
+                        <div class="container-fluid">
+                            <!--Map Area-->
+  
+                            <div id="map" style="min-height: 700px; min-width: 300px;"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            </header>
+            <section class="py-5" id="features">
+              
+            </section>
+            
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Joel Papineau 2023</div></div>
+                    
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!--Map-->
+        
+        <!--jQuery-->
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="js/zip-plotter.js"></script>
+    </body>
+</html>
