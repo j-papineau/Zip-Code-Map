@@ -1,6 +1,7 @@
 var map = L.map("map").setView([40.31, -84.32], 5);
 var track;
 var json;
+var statusText = document.getElementById("statusText");
 
 
 
@@ -38,26 +39,51 @@ $(function(){
 
         console.log("loading file.");
 
+        statusText.innerHTML = "loading file.";
+
         //console.log(json);
 
         let count = 0;
         let zips = [];
+        let markerCount = 0;
 
         $.each(json, function(key,val) {
 
-            //console.log(val["Location report"]);
 
-            let zipFromEntry = val["Location report"].slice(0, 5);
+            let zipFromEntry = val["Location"].slice(0, 5);
+            //console.log(zipFromEntry)
             
             if(isZip(zipFromEntry)){
-                zips[count] = zipFromEntry;
-                count++;
-            }
+
+                $.getJSON("assets/zips.json", function (data){
+
+                    statusText.innerHTML = "Parsing through data, please wait..."
+
+                    $.each(data, function(key, val){
+                        currentZip = `${val.Zipcode}`;
+                        
+                        if(currentZip === zipFromEntry){
+                            console.log("parsing: " + currentZip + " validating: " + zipFromEntry);
+
+                            L.marker([val.Lat, val.Long], {
+                                title: val.Zipcode,
+                            }).addTo(map);
+
+                          markerCount++;  
+                        }//end create marker if
+                    })
+
+                })//end getJSON
+
+            }//isZip
 
 
         })//end for each
 
-        console.log(zips);
+        statusText.innerHTML = "Finished"
+        console.log(markerCount);
+
+        
 
     });
 
@@ -72,10 +98,20 @@ $(function(){
         let sheet = workbook.Sheets[workbook.SheetNames[0]];
         json = XLSX.utils.sheet_to_json(sheet);
 
+        statusText.innerHTML = "file selected, waiting for user to confirm"
+
     })
 
     function isZip(zip){
         return /^\d+$/.test(zip);
+    }
+
+
+    function plotZips(zips){
+
+
+
+
     }
 
 

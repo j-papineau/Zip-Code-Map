@@ -52,10 +52,16 @@
                                 <h1 class="display-5 fw-bolder text-white mb-2 text-center">Zip Plotter</h1>
                                 <div class="container-fluid">
                                     <p class="text-secondary">Upload File from Google Ads</p>
+                                    <p class="text-warning">IMPORTANT: REMOVE TOP TWO ROWS SO HEADERS ARE IN FIRST ROW <br> AND REMOVE TOTAL ROWS FROM BOTTOM</p>
+                                    <p class="text-danger">i would do this myself in code but im a programmer not a god <br> -love, joel</p>
                                     <form class="justify-content-center">
                                         <input class="form-control" type="file" id="fileImport">
                                         <button type="button" class="btn btn-success" id="uploadFile" style="margin-top: 10px;">Upload and Plot</button>
                                     </form>
+                                    <div>
+                                        <p class="text-white" style="padding-top: 10px">Status: </p>
+                                        <p id="statusText" class="text-white">awaiting file upload</p>
+                                    </div>
                                 </div>
                                 <!--Flush accordion from BS5 docs-->
                                 
