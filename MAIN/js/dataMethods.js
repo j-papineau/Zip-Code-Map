@@ -151,7 +151,10 @@ async function getZipsPoly(polyLine){
 
     clearPolyLine();
 
+    let startTime = Date.now();
+
     $.getJSON("assets/zips.json", function(data){
+
 
         $.each(data, function(key, val){
 
@@ -194,6 +197,7 @@ async function getZipsPoly(polyLine){
         })//end for each in JSON
 
         printOutput(zipsOutput);
+        console.log("Time to parse: " + (Date.now() - startTime) + "ms");
         return zipsOutput;
 
     })//end getJSON
