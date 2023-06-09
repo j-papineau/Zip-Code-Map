@@ -47,6 +47,8 @@ $(function(){
         let zips = [];
         let markerCount = 0;
 
+        //TODO: condense zips from diff campaigns, probably will have to make zip object
+
         $.each(json, function(key,val) {
 
 
@@ -57,17 +59,23 @@ $(function(){
 
                 $.getJSON("assets/zips.json", function (data){
 
-                    statusText.innerHTML = "Parsing through data, please wait..."
+                    statusText.innerHTML = "Parsing through data, please wait... (i get stuck sometimes)"
 
-                    $.each(data, function(key, val){
-                        currentZip = `${val.Zipcode}`;
+                    $.each(data, function(key, val2){
+                        currentZip = `${val2.Zipcode}`;
                         
                         if(currentZip === zipFromEntry){
                             console.log("parsing: " + currentZip + " validating: " + zipFromEntry);
 
-                            L.marker([val.Lat, val.Long], {
-                                title: val.Zipcode,
+                            let marker = L.marker([val2.Lat, val2.Long], {
+                                title: val2.Zipcode,
                             }).addTo(map);
+
+                            marker.bindPopup('<p> cost = ' + val.Cost + '</p').openPopup();
+
+
+
+
 
                           markerCount++;  
                         }//end create marker if
