@@ -127,7 +127,7 @@ $(function(){
     //tutorial button
 
     $("#tutorialButton").click(function(){
-
+      console.log("opening tutorial in new tab");
       window.open(
         'file-tutorial.html',
         '_blank'
