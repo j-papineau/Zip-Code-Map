@@ -124,5 +124,15 @@ $(function(){
 
 
 
+    //tutorial button
+
+    $("#tutorialButton").click(function(){
+
+      window.open(
+        'file-tutorial.html',
+        '_blank'
+      );
+
+    });
 
 })//end DOM ready
