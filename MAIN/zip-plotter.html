@@ -23,6 +23,8 @@
         <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet.path.drag@0.0.6/src/Path.Drag.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+
 
     </head>
     <body class="d-flex flex-column h-100">
@@ -74,6 +76,8 @@
                                 <h3 class="text-white text-center" style="padding-top: 20px;">--------------</h3>
 
                                 <button type="button" class="btn btn-primary" id="tutorialButton" style="margin-top: 10px;">Prepare File Tutorial</button>
+                                <p class="text-white" style="padding-top: 10px;">Important Note: Multiple Zips have same central node, thats just how the postal service works. <br>
+                                    So table has been added for ease of use.</p>
 
                                <!-- <label for="adrMapInteractable" class="text-white text-bold">ADR Regions Overlay Interactive (Disabled)</label> 
                                 <input type="checkbox" id="adrMapInteractable"> -->
@@ -93,7 +97,27 @@
             </div>
                 
             </header>
-            <section class="py-5" id="features">
+            <section class="py-5 bg-dark" id="features">
+                <!--Data Table-->
+              <h3 class="text-white mx-3">Table: (click on row to zoom map to location)</h3>
+                <table class="table-striped border-secondary" id="zipTable" data-sort-name="Cost" data-sort-order="desc" data-search="true" data-pagination="true"
+                    data-show-export="true" style="background-color: whitesmoke;">
+                    <thead class="thead-dark">
+                        <tr class="custom--hover">
+                            <th data-field="Location">
+                                <span class="text-secondary">
+                                    ZIP
+                                </span>
+                            </th>
+                            <th data-field="Cost">
+                                <span class="text-secondary">
+                                    Cost
+                                </span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+
               
             </section>
             
@@ -112,6 +136,9 @@
         
         <!--jQuery-->
         <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <!--BS5 Table-->
+        <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
         <script src="js/zip-plotter.js"></script>

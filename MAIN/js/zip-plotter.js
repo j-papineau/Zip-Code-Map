@@ -2,6 +2,21 @@ var map = L.map("map").setView([40.31, -84.32], 5);
 var track;
 var json;
 var statusText = document.getElementById("statusText");
+let markers = [];
+
+class markerInfo{
+
+  constructor(){
+
+
+
+
+  }
+
+}
+
+
+
 
 
 
@@ -47,11 +62,22 @@ $(function(){
         let zips = [];
         let markerCount = 0;
 
-        //TODO: condense zips from diff campaigns, probably will have to make zip object
+        console.log(json);
 
+        
+      
+            $("#zipTable").bootstrapTable({
+              data: json,
+            });
+      
+            $("#zipTable").bootstrapTable("load", json);
+            console.log("table refreshed");
+          
+        
         $.each(json, function(key,val) {
 
-
+          //TODO: Maybe Do Checks for after-hours, mobile, and such
+          
             let zipFromEntry = val["Location"].slice(0, 5);
             //console.log(zipFromEntry)
             
@@ -64,14 +90,18 @@ $(function(){
                     $.each(data, function(key, val2){
                         currentZip = `${val2.Zipcode}`;
                         
-                        if(currentZip === zipFromEntry){
+                        if(currentZip == zipFromEntry){
                             console.log("parsing: " + currentZip + " validating: " + zipFromEntry);
 
                             let marker = L.marker([val2.Lat, val2.Long], {
                                 title: val2.Zipcode,
                             }).addTo(map);
 
-                            marker.bindPopup('<p> cost = ' + val.Cost + '</p').openPopup();
+                            marker.bindPopup('<h3>Zip: ' + zipFromEntry + ' </h3> <p>Campaign: ' + val.Campaign + '</p> <p> cost = ' + val.Cost + '</p', {
+                              //popup options
+                              closeOnClick: false, 
+                              autoClose: false
+                            }).openPopup();
 
 
 
@@ -115,12 +145,34 @@ $(function(){
     }
 
 
-    function plotZips(zips){
+    //onclick row to zoom map to selected area
+
+    $("#zipTable").bootstrapTable({
+      onClickRow: function (row, $element) {
+        
+        let zipFromClick = row.Location.slice(0, 5);
+        if(isZip(zipFromClick)){
+
+          $.getJSON("assets/zips.json", function (data){
+
+            $.each(data, function(key, val2){
+                currentZip = `${val2.Zipcode}`;
+                
+                if(currentZip === zipFromClick){
+                   
+                  console.log("Panning map to " + zipFromClick);
+                  map.flyTo([val2.Lat, val2.Long], 15);
+
+                }//end create marker if
+            })
+
+        })//end getJSON
 
 
+        }//end if is zip
+      }
+    }); //end onclickRow
 
-
-    }
 
 
 
