@@ -14,6 +14,15 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!--Leaflet-->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        
+        
+        
+        
+        
+
+
+
+
         <!--Fa-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
@@ -24,6 +33,12 @@
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet.path.drag@0.0.6/src/Path.Drag.min.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+
+        <!--Cluster-->
+
+        <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+        
 
 
     </head>
@@ -54,7 +69,7 @@
                                 <h1 class="display-5 fw-bolder text-white mb-2 text-center">Zip Plotter</h1>
                                 <div class="container-fluid">
                                     <p class="text-secondary">Upload File from Google Ads</p>
-                                    <p class="text-warning">IMPORTANT: REMOVE TOP TWO ROWS SO HEADERS ARE IN FIRST ROW <br> AND REMOVE TOTAL ROWS FROM BOTTOM</p>
+                                    <p class="text-warning">IMPORTANT: REMOVE TOP TWO ROWS SO HEADERS ARE IN FIRST ROW <br> AND REMOVE TOTAL ROWS FROM BOTTOM - Click file tutorial if you need help</p>
                                     <p class="text-danger">i would do this myself in code but im a programmer not a god <br> -love, joel</p>
                                     <form class="justify-content-center">
                                         <input class="form-control" type="file" id="fileImport">
@@ -76,9 +91,11 @@
                                 <h3 class="text-white text-center" style="padding-top: 20px;">--------------</h3>
 
                                 <button type="button" class="btn btn-primary" id="tutorialButton" style="margin-top: 10px;">Prepare File Tutorial</button>
-                                <p class="text-white" style="padding-top: 10px;">Important Note: Multiple Zips have same central node, thats just how the postal service works. <br>
-                                    So table has been added for ease of use.</p>
+                                <p class="text-white" style="padding-top: 10px;">Important Note: Multiple Zips have same central node, thats just how the postal service works. <br> Therefore, Markers that are within a threshold will be grouped. Treat markers linked to a node as
+                                having their location at the node. The spread on the node is to make them viewable. <br>
+                                Table has been added for ease of use.</p>
 
+                                
                                <!-- <label for="adrMapInteractable" class="text-white text-bold">ADR Regions Overlay Interactive (Disabled)</label> 
                                 <input type="checkbox" id="adrMapInteractable"> -->
 

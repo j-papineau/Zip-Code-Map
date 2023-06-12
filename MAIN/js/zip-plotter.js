@@ -4,23 +4,21 @@ var json;
 var statusText = document.getElementById("statusText");
 let markers = [];
 
-class markerInfo{
-
-  constructor(){
-
-
-
-
-  }
-
-}
-
-
-
-
-
 
 $(function(){
+
+// //create marker icons
+//   var lowCostIcon = L.Icon({
+
+//     iconURL: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+//     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+//     iconSize: [25, 41],
+//     iconAnchor: [12, 41],
+//     popupAnchor: [1, -34],
+//     shadowSize: [41, 41]
+//   });
+
+
 
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 17,
@@ -61,11 +59,10 @@ $(function(){
         let count = 0;
         let zips = [];
         let markerCount = 0;
+        let spread;
+        let components = [];
 
-        console.log(json);
-
-        
-      
+        //populate table
             $("#zipTable").bootstrapTable({
               data: json,
             });
@@ -74,6 +71,10 @@ $(function(){
             console.log("table refreshed");
           
         
+            //create marker cluster
+            var markerCluster = L.markerClusterGroup();
+            
+
         $.each(json, function(key,val) {
 
           //TODO: Maybe Do Checks for after-hours, mobile, and such
@@ -85,27 +86,48 @@ $(function(){
 
                 $.getJSON("assets/zips.json", function (data){
 
-                    statusText.innerHTML = "Parsing through data, please wait... (i get stuck sometimes)"
+                    statusText.innerHTML = "Parsing through data."
 
                     $.each(data, function(key, val2){
                         currentZip = `${val2.Zipcode}`;
+
+                        spread = Math.floor(Math.random() * 50);
+                        spread = spread / 1000; //random spread value to limit marker stacking
                         
-                        if(currentZip == zipFromEntry){
-                            console.log("parsing: " + currentZip + " validating: " + zipFromEntry);
+                        if(currentZip == zipFromEntry && val.Cost > 0){
+                            console.log("parsing: " + currentZip + " validating: " + zipFromEntry + " at cost: " + val.Cost + " and spread: " + spread);
 
-                            let marker = L.marker([val2.Lat, val2.Long], {
-                                title: val2.Zipcode,
-                            }).addTo(map);
+                            let marker;
 
-                            marker.bindPopup('<h3>Zip: ' + zipFromEntry + ' </h3> <p>Campaign: ' + val.Campaign + '</p> <p> cost = ' + val.Cost + '</p', {
+
+                            //decide marker icon based on cost
+
+                            // cost = val.Cost;
+
+                            // if(cost < 10){
+                            //   marker = L.marker([val2.Lat, val2.Long], {
+                            //     title: val2.Zipcode,
+                            //     icon: lowCostIcon
+                            //   });
+                            // }else{
+                            //   marker = L.marker([val2.Lat, val2.Long], {
+                            //     title: val2.Zipcode,
+                            //   });
+                            // }
+
+                            marker = L.marker([val2.Lat, val2.Long], {
+                              title: val2.Zipcode,
+                            });
+
+                            markerCluster.addLayer(marker);
+
+                            map.addLayer(markerCluster);
+
+                            marker.bindPopup('<h3>Zip: ' + zipFromEntry + ' </h3> <p>Campaign: ' + val.Campaign + '</p> <p> Cost = $' + val.Cost + '</p', {
                               //popup options
                               closeOnClick: false, 
-                              autoClose: false
+                              autoClose: true
                             }).openPopup();
-
-
-
-
 
                           markerCount++;  
                         }//end create marker if
@@ -113,16 +135,13 @@ $(function(){
 
                 })//end getJSON
 
-            }//isZip
+            } //isZip
+          
+          // statusText.innerHTML = "Finished"
+          // console.log(markerCount);
 
-
-        })//end for each
-
-        statusText.innerHTML = "Finished"
-        console.log(markerCount);
-
+        })//end for each  
         
-
     });
 
     $("#fileImport").change(async function(e){
@@ -143,6 +162,16 @@ $(function(){
     function isZip(zip){
         return /^\d+$/.test(zip);
     }
+    //tests if there is a radius object from the google data
+    // function isCircle(test){
+      
+      
+    //   let parts = test.split("|");
+     
+    //   if(isZip(parts[0].slice(0,1))){
+    //     console.log("circle found " + parts);
+    //   }
+    // }
 
 
     //onclick row to zoom map to selected area
