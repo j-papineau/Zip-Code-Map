@@ -21,6 +21,11 @@
         <script src="KML/L.KML.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/leaflet.path.drag@0.0.6/src/Path.Drag.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+
+        <!--File Save-->
+        <script src="js\leaflet.ajax.min.js" crossorigin=""></script>
+
 
     </head>
     <body class="d-flex flex-column h-100">
@@ -144,8 +149,12 @@
                                 </div>
                                 <button type="button" class="btn btn-primary" id="loadGeoJSON" style="margin-top: 10px;">Load Current Zones</button>
                                 <p class="text-white" style="padding-top: 10px">- Do Not Use Below (Love, Joel) -</p>
-                                <button type="button" class="btn btn-success" id="updateGeoJSON" style="margin-top: 10px;">Save Changes</button> 
-                                <button type="button" class="btn btn-secondary" id="exportGeoJSON" style="margin-top: 10px;">Export GeoJSON</button> 
+                                <button type="button" class="btn btn-secondary" id="exportGeoJSON" style="margin-top: 10px;">Export GeoJSON</button>
+                                <form class="justify-content-center" style="margin-top: 10px;">
+                                    <input class="form-control" type="file" id="fileImport">
+                                    <button type="button" class="btn btn-success" id="uploadFile" style="margin-top: 10px;">Upload and Plot</button>
+                                </form>
+                                <p class="text-white">Upload GeoJSON for reference</p> 
 
 
                             </div>

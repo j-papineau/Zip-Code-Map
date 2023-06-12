@@ -156,6 +156,3 @@ function updateGeoJSON(){
 
 }
 
-function exportGeoJSON(){
-    console.log("exporting geoJSON");
-}

@@ -148,4 +148,30 @@ $("#csvCheck").change(function(){
 
 });
 
+
+$("#uploadFile").click(function(){
+
+  // var geoLayer = new L.GeoJSON.AJAX(file);
+  // geoLayer.addTo(map);
+
+  var geoLayer = new L.GeoJSON("MAIN\assets\testing.geojson").addTo(map);
+
+});
+
+//loadsGeoJSON on change
+
+$("#fileImport").change(async function(e){
+
+  console.log("file changed.");
+  const file = e.target.files[0];
+  console.log(file)
+  var geoLayer = new L.GeoJSON.AJAX(file);
+
+  console.log("geolayer: " + geoLayer);
+  
+  geoLayer.addTo(map);
+
+
+})
+
 });//end DOM ready

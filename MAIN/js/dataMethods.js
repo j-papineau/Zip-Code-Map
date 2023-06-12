@@ -1,5 +1,8 @@
 var markerCount = 0;
 var markers = [];
+var polygonsExport = [];
+//var polyCount = 0;
+var polygonCounter = -1;
 
 //PRINT -- EXPORT 
 function printOutput(outputString) {
@@ -139,6 +142,7 @@ async function getZipFromCircle(circle, i){
 }
 
 async function getZipsPoly(polyLine){
+    polygonCounter++;
     i = 0;
     let zipsOutput = "";
 
@@ -148,6 +152,12 @@ async function getZipsPoly(polyLine){
     polygons[i] = L.polygon(coords, {
         color: "green",
     }).addTo(map);
+
+    
+
+    polygonsExport[polygonCounter] = L.polygon(coords, {
+      color: "blue",
+    });
 
     clearPolyLine();
 
@@ -201,7 +211,24 @@ async function getZipsPoly(polyLine){
         return zipsOutput;
 
     })//end getJSON
+}
 
+function exportGeoJSON(){
+  console.log("poly count: " + polygonCounter);
+  var layerGroup = L.layerGroup(polygonsExport).addTo(map);
+  console.log("Layer: " + layerGroup);
+  var geoJSONData = layerGroup.toGeoJSON();
+  saveToFile(geoJSONData, "test");
 
+  
+}
+
+function saveToFile(content, filename){
+
+  var file = filename + '.geojson';
+  saveAs(new File([JSON.stringify(content)], file, {
+    type: "text/plain;charset=utf-8"
+  }), file);
+  
 
 }
